@@ -30,13 +30,6 @@ var armas =
         Imagen: "https://i.imgur.com/GwpmdxA.png"
     }
 ]
-const showHelloWorld = (req,res) => 
-{
-    res.status(200).send
-    ({
-        message: 'Hello World'
-    });
-}
 
 const getArma = (req, res) => 
 {
@@ -44,11 +37,14 @@ const getArma = (req, res) =>
     const position = req.params.position
     res.status(200).send(armas[position]);
 }
+const getArmas = (req, res) => 
+{
+    console.log("Entrando en getArma");
+    res.status(200).send(armas);
+}
 //routes
-
-api.get('/Hello-world', showHelloWorld);
 api.get('/armas/:position', getArma)
-
+api.get('/armas', getArmas)
 app.use('/api', api);
 
 const escuchar = () => 
